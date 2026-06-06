@@ -231,6 +231,10 @@
         "productos/imagen26.png"
       ]
     },
+
+
+
+
     {
       "name": "Bape STA Low White",
       "ID": "8BVX",
@@ -255,11 +259,15 @@
         "videos/Bape-Sta/IMG_6352.mp4"
       ]
     },
+
+
+
+
     {
       "name": "Dior B30 – White",
       "ID": "8X2LBBX1",
       "image": "productos/imagen16.png",
-      "brand": "Dior",
+      "brand": "Dior b30",
       "price": "$65",
       "shipping": "$0",
       "media": [
@@ -290,6 +298,19 @@
         "productos/imagen18.png",
         "videos/Dior-b30/kj82g-shndu.mp4"
       ]
+    },
+    {
+      "name": "Dior B22 – Triple Black",
+      "ID": "8JX2B",
+      "image": "productos/imagen30.png",
+      "brand": "Dior B22",
+      "price": "$65",
+      "shipping": "$0",
+      "media": [
+        "productos/imagen30.png",
+        "videos/dior-b22/761da42d-6b1b-4ef0-bbd4-afaa1d6f4698.mp4"
+      ]
     }
+
   ]
 }
