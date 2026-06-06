@@ -1,6 +1,6 @@
 {
   "products": [
-      {
+    {
       "name": "Nike Air force One - Triple White",
       "ID": "TY423",
       "image": "productos/imagen5.png",
@@ -9,8 +9,7 @@
       "description": "Nike Air Force - Triple White High Quality 1:1",
       "shipping": "$0",
       "media": [
-      "productos/imagen5.png"
-      
+        "productos/imagen5.png"
       ]
     },
     {
@@ -22,9 +21,8 @@
       "description": "Nike Air Force Low Corde White High Quality 1:1",
       "shipping": "$0",
       "media": [
-      "productos/image3.png",
-      "videos/AF1-corde/0b592a47-a310-4843-9d73-b7f8ecace8e0.mp4"
-      
+        "productos/image3.png",
+        "videos/AF1-corde/0b592a47-a310-4843-9d73-b7f8ecace8e0.mp4"
       ]
     },
     {
@@ -36,11 +34,11 @@
       "description": "Nike Air Force Low Nocta High Quality 1:1",
       "shipping": "$0",
       "media": [
-      "productos/imagen4.png",
-      "videos/AF1-nocta/01ebd3b7-4393-4483-979f-5ac6c222aca4.mp4"
+        "productos/imagen4.png",
+        "videos/AF1-nocta/01ebd3b7-4393-4483-979f-5ac6c222aca4.mp4"
       ]
     },
-          {
+    {
       "name": "Nike Air force One - Triple Black",
       "ID": "9X8C22",
       "image": "productos/imagen7.png",
@@ -49,8 +47,7 @@
       "description": "Nike Air Force - Triple Black High Quality 1:1",
       "shipping": "$0",
       "media": [
-      "productos/imagen7.png"
-      
+        "productos/imagen7.png"
       ]
     },
     {
@@ -62,8 +59,7 @@
       "description": "Nike Air Force Low Corde Black High Quality 1:1",
       "shipping": "$0",
       "media": [
-      "productos/image8.png"
-      
+        "productos/image8.png"
       ]
     },
     {
@@ -75,8 +71,7 @@
       "description": "Nike Air Force Low Supreme White High Quality 1:1",
       "shipping": "$0",
       "media": [
-      "productos/imagen9.png"
-      
+        "productos/imagen9.png"
       ]
     },
     {
@@ -88,16 +83,9 @@
       "description": "Nike Air Force Low Supreme Black High Quality 1:1",
       "shipping": "$0",
       "media": [
-      "productos/imagen10.png"
-      
+        "productos/imagen10.png"
       ]
     },
-
-
-
-
-
-
     {
       "name": "Nike Air Max TN Plus - Triple Black",
       "ID": "8772XCVRF",
@@ -106,8 +94,8 @@
       "price": "$40",
       "shipping": "$0",
       "media": [
-      "productos/imagen14.png",
-      "videos/Air-Max-Tn-Plus/a62vue-274bx72-s72bxvg.mp4"
+        "productos/imagen14.png",
+        "videos/Air-Max-Tn-Plus/a62vue-274bx72-s72bxvg.mp4"
       ]
     },
     {
@@ -118,14 +106,9 @@
       "price": "$40",
       "shipping": "$0",
       "media": [
-      "productos/imagen27.png"
+        "productos/imagen27.png"
       ]
     },
-    
-
-
-
-
     {
       "name": "Air Max X Corteiz – Essential White",
       "ID": "6B81ZX",
@@ -134,7 +117,7 @@
       "price": "$50",
       "shipping": "$0",
       "media": [
-      "productos/imagen11.png"
+        "productos/imagen11.png"
       ]
     },
     {
@@ -145,8 +128,8 @@
       "price": "$50",
       "shipping": "$0",
       "media": [
-      "productos/imagen12.png",
-      "videos/AirMax97Azules/c7d410da-7910-4950-b018-1bde1268238e.mp4"
+        "productos/imagen12.png",
+        "videos/AirMax97Azules/c7d410da-7910-4950-b018-1bde1268238e.mp4"
       ]
     },
     {
@@ -157,14 +140,9 @@
       "price": "$50",
       "shipping": "$0",
       "media": [
-      "productos/imagen13.png"
+        "productos/imagen13.png"
       ]
     },
-
-
-
-
-
     {
       "name": "Nike Hot Step 2 NOCTA Drake White",
       "ID": "74NNA",
@@ -173,7 +151,7 @@
       "price": "$55",
       "shipping": "$0",
       "media": [
-      "productos/imagen20.png"
+        "productos/imagen20.png"
       ]
     },
     {
@@ -184,9 +162,9 @@
       "price": "$55",
       "shipping": "$0",
       "media": [
-      "productos/imagen21.png"
+        "productos/imagen21.png"
       ]
-    },    
+    },
     {
       "name": "Nike Hot Step 2 NOCTA Drake Orange",
       "ID": "246JD",
@@ -195,14 +173,9 @@
       "price": "$55",
       "shipping": "$0",
       "media": [
-      "productos/imagen22.png"
+        "productos/imagen22.png"
       ]
     },
-    
-
-
-    
-
     {
       "name": "Air Jordan Retro 4 - Military Black",
       "ID": "83DNX",
@@ -211,7 +184,7 @@
       "price": "$50",
       "shipping": "$0",
       "media": [
-      "productos/imagen15.png"
+        "productos/imagen15.png"
       ]
     },
     {
@@ -222,7 +195,7 @@
       "price": "$50",
       "shipping": "$0",
       "media": [
-      "productos/imagen23.png"
+        "productos/imagen23.png"
       ]
     },
     {
@@ -233,7 +206,7 @@
       "price": "$50",
       "shipping": "$0",
       "media": [
-      "productos/imagen24.png"
+        "productos/imagen24.png"
       ]
     },
     {
@@ -244,7 +217,7 @@
       "price": "$50",
       "shipping": "$0",
       "media": [
-      "productos/imagen25.png"
+        "productos/imagen25.png"
       ]
     },
     {
@@ -255,23 +228,19 @@
       "price": "$50",
       "shipping": "$0",
       "media": [
-      "productos/imagen26.png"
+        "productos/imagen26.png"
       ]
     },
-    
-
-
-
     {
       "name": "Bape STA Low White",
       "ID": "8BVX",
       "image": "productos/imagen19.png",
       "brand": "Bape",
-      "price": "$45",
+      "price": "$50",
       "shipping": "$0",
       "media": [
-      "productos/imagen19.png",
-      "videos/Bape-Sta/4c710a0c-33a4-4ae8-892a-0bcc2b48c3a7.mp4"
+        "productos/imagen19.png",
+        "videos/Bape-Sta/4c710a0c-33a4-4ae8-892a-0bcc2b48c3a7.mp4"
       ]
     },
     {
@@ -282,14 +251,10 @@
       "price": "$45",
       "shipping": "$0",
       "media": [
-      "productos/imagen28.png",
-      "videos/Bape-Sta/IMG_6352.mp4"
+        "productos/imagen28.png",
+        "videos/Bape-Sta/IMG_6352.mp4"
       ]
     },
-        
-
-
-
     {
       "name": "Dior B30 – White",
       "image": "productos/imagen16.png",
@@ -297,8 +262,8 @@
       "price": "$65",
       "shipping": "$0",
       "media": [
-      "productos/imagen16.png",
-      "videos/Dior-b30/kj82g-shndu.mp4"
+        "productos/imagen16.png",
+        "videos/Dior-b30/kj82g-shndu.mp4"
       ]
     },
     {
@@ -308,8 +273,8 @@
       "price": "$65",
       "shipping": "$0",
       "media": [
-      "productos/imagen17.png",
-      "videos/Dior-b30/4975b1e4-6f9a-404f-8d86-6f93b4aa9a23.mp4"
+        "productos/imagen17.png",
+        "videos/Dior-b30/4975b1e4-6f9a-404f-8d86-6f93b4aa9a23.mp4"
       ]
     },
     {
@@ -319,8 +284,8 @@
       "price": "$65",
       "shipping": "$0",
       "media": [
-      "productos/imagen18.png",
-      "videos/Dior-b30/kj82g-shndu.mp4"
+        "productos/imagen18.png",
+        "videos/Dior-b30/kj82g-shndu.mp4"
       ]
     }
   ]
