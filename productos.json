@@ -17,7 +17,7 @@
       "ID": "EE632",
       "image": "productos/image3.png",
       "brand": "Nike Air Force One",
-      "price": "$40",
+      "price": "$50",
       "description": "Nike Air Force Low Corde White High Quality 1:1",
       "shipping": "$0",
       "media": [
@@ -235,10 +235,6 @@
         "productos/imagen26.png"
       ]
     },
-
-
-
-
     {
       "name": "Bape STA Low White",
       "ID": "8BVX",
@@ -263,10 +259,6 @@
         "videos/Bape-Sta/IMG_6352.mp4"
       ]
     },
-
-
-
-
     {
       "name": "Dior B30 – White",
       "ID": "8X2LBBX1",
@@ -338,6 +330,5 @@
         "videos/LouiseVuitton/IMG_4138.mp4"
       ]
     }
-
   ]
 }
