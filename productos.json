@@ -71,8 +71,7 @@
       "description": "Nike Air Force Low Supreme White High Quality 1:1",
       "shipping": "$0",
       "media": [
-        "productos/imagen9.png",
-        "videos/AF1-nocta/IMG_4239.mp4"
+        "productos/imagen9.png"
       ]
     },
     {
@@ -118,8 +117,7 @@
       "price": "$50",
       "shipping": "$0",
       "media": [
-        "productos/imagen11.png",
-        "videos/AirMax97Azules/IMG_3670.mp4"
+        "productos/imagen11.png"
       ]
     },
     {
@@ -197,8 +195,7 @@
       "price": "$50",
       "shipping": "$0",
       "media": [
-        "productos/imagen23.png",
-        "videos/Jordan4/IMG_4418.mp4"
+        "productos/imagen23.png"
       ]
     },
     {
@@ -209,8 +206,7 @@
       "price": "$50",
       "shipping": "$0",
       "media": [
-        "productos/imagen24.png",
-        "videos/Jordan4/IMG_4208.mp4"
+        "productos/imagen24.png"
       ]
     },
     {
@@ -313,6 +309,30 @@
       "media": [
         "productos/imagen30.png",
         "videos/dior-b22/761da42d-6b1b-4ef0-bbd4-afaa1d6f4698.mp4"
+      ]
+    },
+    {
+      "name": "Dior B22 – Triple Black ",
+      "ID": "8JX2872B",
+      "image": "productos/imagen32.png",
+      "brand": "Dior B22",
+      "price": "$65",
+      "shipping": "$0",
+      "media": [
+        "productos/imagen32.png",
+        "videos/dior-b22/IMG_3988.mp4"
+      ]
+    },
+    {
+      "name": "Louis Vuitton Stake – White",
+      "ID": "0X1MD",
+      "image": "productos/imagen31.png",
+      "brand": "Louis Vuitton",
+      "price": "$70",
+      "shipping": "$0",
+      "media": [
+        "productos/imagen31.png",
+        "videos/LouiseVuitton/IMG_4138.mp4"
       ]
     }
 
