@@ -71,7 +71,8 @@
       "description": "Nike Air Force Low Supreme White High Quality 1:1",
       "shipping": "$0",
       "media": [
-        "productos/imagen9.png"
+        "productos/imagen9.png",
+        "videos/AF1-nocta/IMG_4239.mp4"
       ]
     },
     {
@@ -117,7 +118,8 @@
       "price": "$50",
       "shipping": "$0",
       "media": [
-        "productos/imagen11.png"
+        "productos/imagen11.png",
+        "videos/AirMax97Azules/IMG_3670.mp4"
       ]
     },
     {
@@ -195,7 +197,8 @@
       "price": "$50",
       "shipping": "$0",
       "media": [
-        "productos/imagen23.png"
+        "productos/imagen23.png",
+        "videos/Jordan4/IMG_4418.mp4"
       ]
     },
     {
@@ -206,7 +209,8 @@
       "price": "$50",
       "shipping": "$0",
       "media": [
-        "productos/imagen24.png"
+        "productos/imagen24.png",
+        "videos/Jordan4/IMG_4208.mp4"
       ]
     },
     {
@@ -307,8 +311,7 @@
       "price": "$65",
       "shipping": "$0",
       "media": [
-        "productos/imagen30.png",
-        "videos/dior-b22/761da42d-6b1b-4ef0-bbd4-afaa1d6f4698.mp4"
+        "productos/imagen30.png"
       ]
     },
     {
