@@ -18,7 +18,7 @@
       "image": "productos/image3.png",
       "brand": "Nike Air Force One",
       "price": "$40.00",
-      "description": "Nike Air Force Low Corde White High Quality 1:1",
+      "description": "Nike Air Force Corde White High Quality 1:1",
       "shipping": "$0",
       "media": [
         "productos/image3.png",
@@ -31,7 +31,7 @@
       "image": "productos/imagen4.png",
       "brand": "Nike Air Force One",
       "price": "$45.00",
-      "description": "Nike Air Force Low Nocta High Quality 1:1",
+      "description": "Nike Air Force Nocta High Quality 1:1",
       "shipping": "$0",
       "media": [
         "productos/imagen4.png",
@@ -56,7 +56,7 @@
       "image": "productos/image8.png",
       "brand": "Nike Air Force One",
       "price": "$40.00",
-      "description": "Nike Air Force Low Corde Black High Quality 1:1",
+      "description": "Nike Air Force Corde Black High Quality 1:1",
       "shipping": "$0",
       "media": [
         "productos/image8.png"
@@ -85,6 +85,32 @@
       "shipping": "$0",
       "media": [
         "productos/imagen10.png"
+      ]
+    },
+    {
+      "name": "Nike Air Force x Louis Vuitton – White",
+      "ID": "39JDKS1VX",
+      "image": "productos/imagen33.png",
+      "brand": "Nike Air Force One",
+      "price": "$40.00",
+      "description": "Air Force One x Louis Vuitton – White High Quality 1:1",
+      "shipping": "$0",
+      "media": [
+        "productos/imagen33.png",
+        "videos/AF1/4139d0e6-7c09-4aa7-ae1e-baa1a6ba7103.mp4"
+      ]
+    },
+    {
+      "name": "Nike Air Force Cactus Plant Flea Market - Black",
+      "ID": "39JDKS1VX",
+      "image": "productos/imagen33.png",
+      "brand": "Nike Air Force One",
+      "price": "$40.00",
+      "description": "Air Force One x Louis Vuitton – Black High Quality 1:1",
+      "shipping": "$0",
+      "media": [
+        "productos/imagen34.png",
+        "videos/AF1/dc59a8f9-7719-449f-adde-a2f1318808db.mp4"
       ]
     },
     {
