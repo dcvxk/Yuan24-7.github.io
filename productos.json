@@ -1,12 +1,12 @@
 {
   "products": [
-    {
+   {
       "name": "Nike Air force One - Triple White",
       "ID": "TY423",
       "image": "productos/imagen5.png",
       "brand": "Nike Air Force One",
       "price": "$40.00",
-      "description": "Nike Air Force - Triple White High Quality 1:1",
+      "description": "Nike Air Force - Triple White High Quality 1:1.\n\nUna vez que realices tu pedido, mi fábrica producirá tu producto.\n\nLo recibirás en 24-48 horas.\n\nCuando llegue, te enviaré videos y fotos para tu confirmación.\n\nTras la confirmación, te lo enviaré.",
       "shipping": "$0",
       "media": [
         "productos/imagen5.png"
