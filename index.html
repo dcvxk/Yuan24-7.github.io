@@ -1,7 +1,9 @@
-<html lang="zh-CN"><head>
+<!DOCTYPE html>
+<html lang="es">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Guanqian 24/7 | 观前 </title>
+    <title>Guanqian 24/7 | 观前</title>
     <style>
         * {
             margin: 0;
@@ -9,12 +11,16 @@
             box-sizing: border-box;
         }
 
+        /* FIX: scroll-behavior debe ir en <html>, en <body> no funciona */
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, Helvetica, sans-serif;
-            background: url('Background/imagen.png') no-repeat center center fixed;
+            background: #0a0a0f url('Background/imagen.png') no-repeat center center fixed;
             background-size: cover;
             color: #f0f0f0;
-            scroll-behavior: smooth;
             line-height: 1.5;
             letter-spacing: -0.01em;
         }
@@ -22,6 +28,7 @@
         /* Glassmorphism oscuro */
         .nav-dynamic, section, .feature-card, .product-card, .review-item, .brand-filter-sidebar, .footer-glass {
             backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             background: rgba(10, 10, 15, 0.55);
             border: 0.5px solid rgba(255, 255, 255, 0.12);
         }
@@ -40,6 +47,7 @@
             transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             z-index: 1000;
             backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
             background: rgba(8, 8, 12, 0.68);
             border-radius: 2.2rem;
             box-shadow: 0 10px 28px -8px rgba(0, 0, 0, 0.4);
@@ -52,10 +60,11 @@
             padding: 0.45rem 1.2rem;
             background: rgba(8, 8, 12, 0.82);
             backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
             border-radius: 2.2rem;
         }
 
-        .nav-dynamic.compact .nav-links, 
+        .nav-dynamic.compact .nav-links,
         .nav-dynamic.compact .menu-toggle {
             display: none;
         }
@@ -109,8 +118,10 @@
             width: 75%;
             max-width: 280px;
             height: 100vh;
+            height: 100dvh; /* FIX: 100vh en móvil queda cortado por la barra del navegador */
             background: rgba(12, 12, 18, 0.96);
             backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
             z-index: 1100;
             transition: right 0.3s ease;
             padding: 5rem 1.8rem;
@@ -150,6 +161,7 @@
             inset: 0;
             background: rgba(0,0,0,0.45);
             backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
             z-index: 1050;
             display: none;
         }
@@ -164,9 +176,9 @@
             margin-bottom: 4rem;
             border-radius: 2rem;
             padding: 2rem 1.8rem;
-            backdrop-filter: blur(16px);
             background: rgba(10, 10, 15, 0.48);
             box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            scroll-margin-top: 90px; /* FIX: el menú fijo tapaba el título al navegar por anclas */
         }
 
         h2 {
@@ -204,7 +216,7 @@
             flex-shrink: 0;
         }
 
-        /* marquee */
+        /* marquee de marcas */
         .brands-slider {
             width: 100%;
             overflow: hidden;
@@ -214,25 +226,27 @@
             margin: 2rem 0 1rem;
         }
 
+        /* FIX: se usa margin en vez de gap y se anima justo un tercio (1 copia de 3),
+           así el bucle es continuo y no da el "salto" que había antes (-20% → -50%). */
         .brands-track {
             display: flex;
-            gap: 3.2rem;
-            animation: scrollLeftToRight 28s linear infinite;
+            animation: brandsScroll 30s linear infinite;
             width: max-content;
         }
 
         .brands-track img {
-            height: 68px;
+            height: 64px;
             width: auto;
             max-width: 120px;
+            margin-right: 3.2rem;
+            flex-shrink: 0;
             object-fit: contain;
             filter: brightness(0) invert(1);
-            transition: filter 0.2s;
         }
 
-        @keyframes scrollLeftToRight {
-            0% { transform: translateX(-20%); }
-            100% { transform: translateX(-50%); }
+        @keyframes brandsScroll {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-33.3333%); }
         }
 
         .features-grid {
@@ -245,6 +259,7 @@
         .feature-card {
             background: rgba(12, 12, 18, 0.65);
             backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-radius: 1.6rem;
             padding: 1.6rem;
             flex: 1;
@@ -271,8 +286,10 @@
         }
         .brand-filter-sidebar {
             width: 240px;
+            align-self: flex-start; /* FIX: antes se estiraba a toda la altura del catálogo */
             background: rgba(12, 12, 18, 0.75);
             backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-radius: 1.5rem;
             border: 0.5px solid rgba(255,255,255,0.1);
             transition: all 0.3s ease;
@@ -293,6 +310,11 @@
         .filter-header:hover {
             background: rgba(255,255,255,0.05);
         }
+        .filter-header:focus-visible,
+        .product-card:focus-visible {
+            outline: 2px solid #a0a0ff;
+            outline-offset: 2px;
+        }
         .filter-header-left {
             display: flex;
             align-items: center;
@@ -312,7 +334,6 @@
             padding: 1rem 1rem;
             max-height: 350px;
             overflow-y: auto;
-            transition: all 0.3s ease;
         }
         .filter-brands.collapsed {
             display: none;
@@ -334,6 +355,7 @@
         }
         .products-area {
             flex: 1;
+            min-width: 0; /* FIX: evita que el grid desborde el contenedor flex */
         }
         .brand-category {
             margin-bottom: 2rem;
@@ -354,6 +376,7 @@
         .product-card {
             background: rgba(10, 10, 15, 0.7);
             backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-radius: 1.5rem;
             padding: 1rem;
             transition: all 0.2s ease;
@@ -393,12 +416,16 @@
         .review-item {
             background: rgba(12, 12, 18, 0.6);
             backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-radius: 1.2rem;
             padding: 1.2rem 1.6rem;
             border-left: 2px solid #6c6cff;
         }
+        .review-author {
+            font-weight: 500;
+        }
 
-        /* VISTA DE PRODUCTO COMPLETO - fondo transparente */
+        /* VISTA DE PRODUCTO COMPLETO */
         .product-detail-view {
             position: fixed;
             top: 0;
@@ -407,6 +434,7 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.75);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             z-index: 2000;
             overflow-y: auto;
             padding: 2rem 1.5rem;
@@ -420,6 +448,7 @@
             margin: 2rem auto;
             background: rgba(12, 12, 18, 0.85);
             backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
             border-radius: 2.5rem;
             padding: 2rem;
             border: 0.5px solid rgba(255,255,255,0.2);
@@ -476,6 +505,7 @@
             height: 70px;
             border-radius: 1rem;
             object-fit: cover;
+            background: #000;
             cursor: pointer;
             border: 2px solid transparent;
             transition: 0.1s;
@@ -521,7 +551,6 @@
         .footer-glass {
             margin-top: 2rem;
             padding: 2rem 1.5rem;
-            backdrop-filter: blur(16px);
             background: rgba(8, 8, 12, 0.7);
             border-top: 0.5px solid rgba(255,255,255,0.1);
             text-align: center;
@@ -543,10 +572,15 @@
             font-size: 0.85rem;
             opacity: 0.8;
         }
+        .footer-info a {
+            color: inherit;
+            text-decoration: none;
+        }
         .footer-links {
             display: flex;
             gap: 2rem;
             flex-wrap: wrap;
+            align-items: center;
         }
         .footer-links a {
             color: #ccc;
@@ -557,21 +591,23 @@
         .footer-links a:hover {
             color: white;
         }
+        .lang-select {
+            background: rgba(255,255,255,0.1);
+            color: #f0f0f0;
+            border: 0.5px solid rgba(255,255,255,0.2);
+            border-radius: 1rem;
+            padding: 0.3rem 0.7rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+        .lang-select option {
+            color: #111;
+        }
         .footer-copyright {
             text-align: center;
             margin-top: 1.5rem;
             font-size: 0.7rem;
             opacity: 0.6;
-        }
-
-        @media (max-width: 720px) {
-            .detail-grid { grid-template-columns: 1fr; }
-            .brand-filter-sidebar { width: 100%; }
-            .catalog-layout { flex-direction: column; }
-            .nav-links { display: none; }
-            .menu-toggle { display: block; }
-            .footer-content { flex-direction: column; text-align: center; }
-            .footer-info { text-align: center; }
         }
 
         .whatsapp-float {
@@ -581,17 +617,19 @@
             background: #075e54;
             width: 56px;
             height: 56px;
-            border-radius: 30px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
+            text-decoration: none;
             z-index: 1000;
             transition: 0.2s;
         }
         .whatsapp-float:hover { transform: scale(1.05); }
         .whatsapp-float svg { width: 30px; height: 30px; fill: white; }
-        
+        /* FIX: el banner de cookies tapaba el botón "Aceptar" con el botón de WhatsApp */
+        body.cookie-visible .whatsapp-float { bottom: 120px; }
+
         .cookie-policy-banner {
             position: fixed;
             bottom: 20px;
@@ -599,10 +637,12 @@
             right: 20px;
             background: rgba(12, 12, 20, 0.95);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-radius: 2rem;
             padding: 1rem 1.6rem;
             display: flex;
             justify-content: space-between;
+            align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
             z-index: 1200;
@@ -622,16 +662,23 @@
             background: rgba(20,20,28,0.5);
             border-radius: 2rem;
         }
-        .toast-sync {
-            position: fixed;
-            bottom: 100px;
-            left: 20px;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(12px);
-            padding: 6px 12px;
-            border-radius: 40px;
-            font-size: 0.7rem;
-            z-index: 1100;
+
+        @media (max-width: 720px) {
+            .detail-grid { grid-template-columns: 1fr; }
+            .detail-container { padding: 1.2rem; border-radius: 1.8rem; }
+            .brand-filter-sidebar { width: 100%; align-self: stretch; }
+            .catalog-layout { flex-direction: column; }
+            .nav-links { display: none; }
+            .menu-toggle { display: block; }
+            .footer-content { flex-direction: column; text-align: center; }
+            .footer-info { text-align: center; }
+            .footer-links { justify-content: center; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .brands-track { animation: none; }
+            .carousel-images { transition: none; }
         }
     </style>
 </head>
@@ -644,26 +691,27 @@
         <a href="#catalogo" data-key="nav_catalog">Catálogo</a>
         <a href="#reviews" data-key="nav_reviews">Reseñas</a>
     </div>
-    <button class="menu-toggle" id="menuToggleBtn">☰</button>
+    <button class="menu-toggle" id="menuToggleBtn" aria-label="Menú">☰</button>
 </div>
 
 <div class="mobile-drawer" id="mobileDrawer">
-    <button class="drawer-close" id="closeDrawerBtn">✕</button>
+    <button class="drawer-close" id="closeDrawerBtn" aria-label="Cerrar">✕</button>
     <a href="#inicio" data-key="nav_home">Inicio</a>
     <a href="#catalogo" data-key="nav_catalog">Catálogo</a>
     <a href="#reviews" data-key="nav_reviews">Reseñas</a>
 </div>
 <div class="overlay" id="drawerOverlay"></div>
 
-<div class="whatsapp-float" id="whatsappBtn">
-    <svg viewBox="0 0 24 24"><path d="ath></svg>
-</div>
+<!-- FIX: el atributo "d" del SVG estaba truncado (d="ath>) y el icono no se veía. Ahora es un enlace real. -->
+<a class="whatsapp-float" id="whatsappBtn" href="https://wa.me/8613076441847" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
 <div class="container">
     <section id="inicio">
-        <div class="carousel" id="heroCarousel"><div class="carousel-images" id="carouselImages" style="transform: translateX(-300%);"><img src="banner/imagen.png"><img src="banner/imagen2.png"><img src="banner/imagen3.png"><img src="banner/imagen4.png"></div></div>
+        <div class="carousel" id="heroCarousel"><div class="carousel-images" id="carouselImages"></div></div>
         <div style="text-align: center;"><h2 data-key="brands_title">Marcas con las que trabajamos</h2></div>
-        <div class="brands-slider"><div class="brands-track" id="brandsTrack"><img src="miniatura/Bape.png" style="height: 64px; object-fit: contain; filter: brightness(0) invert(1);"><img src="miniatura/RalphLauren.png" style="height: 64px; object-fit: contain; filter: brightness(0) invert(1);"><img src="miniatura/Jordan.png" style="height: 64px; object-fit: contain; filter: brightness(0) invert(1);"><img src="miniatura/Nike.png" style="height: 64px; object-fit: contain; filter: brightness(0) invert(1);"><img src="miniatura/Corteiz.png" style="height: 64px; object-fit: contain; filter: brightness(0) invert(1);"><img src="miniatura/LouisVuitton.png" style="height: 64px; object-fit: contain; filter: brightness(0) invert(1);"><img src="miniatura/Bape.png" style="height: 64px; object-fit: contain; filter: brightness(0) invert(1);"><img src="miniatura/RalphLauren.png" style="height: 64px; object-fit: contain; filter: brightness(0) invert(1);"><img src="miniatura/Jordan.png" style="height: 64px; object-fit: contain; filter: brightness(0) invert(1);"><img src="miniatura/Nike.png" style="height: 64px; object-fit: contain; filter: brightness(0) invert(1);"><img src="miniatura/Corteiz.png" style="height: 64px; object-fit: contain; filter: brightness(0) invert(1);"><img src="miniatura/LouisVuitton.png" style="height: 64px; object-fit: contain; filter: brightness(0) invert(1);"><img src="miniatura/Bape.png" style="height: 64px; object-fit: contain; filter: brightness(0) invert(1);"><img src="miniatura/RalphLauren.png" style="height: 64px; object-fit: contain; filter: brightness(0) invert(1);"><img src="miniatura/Jordan.png" style="height: 64px; object-fit: contain; filter: brightness(0) invert(1);"><img src="miniatura/Nike.png" style="height: 64px; object-fit: contain; filter: brightness(0) invert(1);"><img src="miniatura/Corteiz.png" style="height: 64px; object-fit: contain; filter: brightness(0) invert(1);"><img src="miniatura/LouisVuitton.png" style="height: 64px; object-fit: contain; filter: brightness(0) invert(1);"></div></div>
+        <div class="brands-slider"><div class="brands-track" id="brandsTrack"></div></div>
         <div class="features-grid">
             <div class="feature-card"><h3 data-key="fast_shipping">Envíos rápidos</h3><p data-key="fast_desc">10 a 12 días · Seguimiento real</p></div>
             <div class="feature-card"><h3 data-key="secure_shipping">Envíos seguros</h3><p data-key="secure_desc">Embalaje reforzado + seguro</p></div>
@@ -675,47 +723,56 @@
         <h2 data-key="catalog_title">Catálogo</h2>
         <div class="catalog-layout" id="catalogLayout">
             <div class="brand-filter-sidebar" id="filterSidebar">
-                <div class="filter-header" id="filterHeader">
+                <div class="filter-header" id="filterHeader" role="button" tabindex="0" aria-expanded="true" aria-controls="filterBrandsContainer">
                     <div class="filter-header-left">
-                        <span>☰</span>
+                        <span aria-hidden="true">☰</span>
                         <span data-key="filter_title">Filtrar por marca</span>
                     </div>
-                    <span class="toggle-icon" id="toggleIcon">▼</span>
+                    <span class="toggle-icon" id="toggleIcon" aria-hidden="true">▼</span>
                 </div>
-                <div class="filter-brands" id="filterBrandsContainer"><button class="filter-brand-btn active" data-brand="TODOS">Todas las marcas</button><button class="filter-brand-btn " data-brand="Bape">Bape</button><button class="filter-brand-btn " data-brand="Dior">Dior</button><button class="filter-brand-btn " data-brand="Jordan">Jordan</button><button class="filter-brand-btn " data-brand="Nike Air Force One">Nike Air Force One</button><button class="filter-brand-btn " data-brand="Nike Air Max">Nike Air Max</button><button class="filter-brand-btn " data-brand="Ralph Lauren">Ralph Lauren</button></div>
+                <div class="filter-brands" id="filterBrandsContainer"></div>
             </div>
-            <div class="products-area" id="productsArea"><div class="brand-category"><div class="brand-title">Nike Air Force One</div><div class="products-grid" id="grid-NikeAirForceOne"><div class="product-card"><img src="productos/imagen5.png" onerror="this.src='https://placehold.co/400x400/2c2c3a/ffffff?text=Nike Air force One - Triple White'"><div class="product-name">Nike Air force One - Triple White</div><div class="price">$40 + envío $0</div></div><div class="product-card"><img src="productos/imagen3.png" onerror="this.src='https://placehold.co/400x400/2c2c3a/ffffff?text=Nike Air Force - Corde White'"><div class="product-name">Nike Air Force - Corde White</div><div class="price">$40 + envío $0</div></div><div class="product-card"><img src="productos/imagen4.png" onerror="this.src='https://placehold.co/400x400/2c2c3a/ffffff?text=Air Force One - Nocta'"><div class="product-name">Air Force One - Nocta</div><div class="price">$45 + envío $0</div></div></div></div><div class="brand-category"><div class="brand-title">Nike Air Max</div><div class="products-grid" id="grid-NikeAirMax"><div class="product-card"><img src="productos/imagen6.png" onerror="this.src='https://placehold.co/400x400/2c2c3a/ffffff?text=Nike Air Max Tn Plus'"><div class="product-name">Nike Air Max Tn Plus</div><div class="price">$40 + envío $0</div></div></div></div><div class="brand-category"><div class="brand-title">Jordan</div><div class="products-grid" id="grid-Jordan"><div class="product-card"><img src="https://placehold.co/400x400/2c2c3a/ffffff?text=Jordan 4 Retro Military Black" onerror="this.src='https://placehold.co/400x400/2c2c3a/ffffff?text=Jordan 4 Retro Military Black'"><div class="product-name">Jordan 4 Retro Military Black</div><div class="price">$229 + envío $15</div></div></div></div><div class="brand-category"><div class="brand-title">Ralph Lauren</div><div class="products-grid" id="grid-RalphLauren"><div class="product-card"><img src="https://placehold.co/400x400/2c2c3a/ffffff?text=Polo Bear Wool Sweater" onerror="this.src='https://placehold.co/400x400/2c2c3a/ffffff?text=Polo Bear Wool Sweater'"><div class="product-name">Polo Bear Wool Sweater</div><div class="price">$245 + envío $16</div></div><div class="product-card"><img src="https://placehold.co/400x400/2c2c3a/ffffff?text=Ralph Lauren Oxford Shirt" onerror="this.src='https://placehold.co/400x400/2c2c3a/ffffff?text=Ralph Lauren Oxford Shirt'"><div class="product-name">Ralph Lauren Oxford Shirt</div><div class="price">$139 + envío $11</div></div></div></div><div class="brand-category"><div class="brand-title">Bape</div><div class="products-grid" id="grid-Bape"><div class="product-card"><img src="https://placehold.co/400x400/2c2c3a/ffffff?text=BAPE STA Classic Green" onerror="this.src='https://placehold.co/400x400/2c2c3a/ffffff?text=BAPE STA Classic Green'"><div class="product-name">BAPE STA Classic Green</div><div class="price">$329 + envío $18</div></div><div class="product-card"><img src="https://placehold.co/400x400/2c2c3a/ffffff?text=BAPE Shark Full Zip Hoodie" onerror="this.src='https://placehold.co/400x400/2c2c3a/ffffff?text=BAPE Shark Full Zip Hoodie'"><div class="product-name">BAPE Shark Full Zip Hoodie</div><div class="price">$449 + envío $22</div></div></div></div><div class="brand-category"><div class="brand-title">Dior</div><div class="products-grid" id="grid-Dior"><div class="product-card"><img src="https://placehold.co/400x400/2c2c3a/ffffff?text=BAPE Shark Full Zip Hoodie" onerror="this.src='https://placehold.co/400x400/2c2c3a/ffffff?text=BAPE Shark Full Zip Hoodie'"><div class="product-name">BAPE Shark Full Zip Hoodie</div><div class="price">$449 + envío $22</div></div></div></div></div>
+            <div class="products-area" id="productsArea"></div>
         </div>
     </section>
 
-    <section id="reviews"><h2 data-key="reviews_title">Reseñas</h2><div id="reviewsContainer" class="reviews-grid"><div class="review-item"><div style="font-weight:500;">Carlos M.</div><div class="review-text">Excelente atención, envío rápido y productos de calidad.</div></div><div class="review-item"><div style="font-weight:500;">Wei Zhang</div><div class="review-text">购物体验非常好，物流安全，值得信赖。</div></div><div class="review-item"><div style="font-weight:500;">James P.</div><div class="review-text">Top quality, fast shipping. Highly recommended.</div></div><div class="review-item"><div style="font-weight:500;">María F.</div><div class="review-text">Pagué por PayPal, todo perfecto. Volveré a comprar.</div></div></div></section>
+    <section id="reviews">
+        <h2 data-key="reviews_title">Reseñas</h2>
+        <div id="reviewsContainer" class="reviews-grid"></div>
+    </section>
 </div>
 
-<!-- FOOTER COMPLETO -->
+<!-- FOOTER -->
 <div class="footer-glass">
     <div class="footer-content">
         <div class="footer-info">
             <p><strong>Guanqian 24/7</strong></p>
-            <p>+86 152 8084 8900</p>
-            <p>contacto@yuan247.com</p>
+            <p><a href="tel:+8615280848900">+86 152 8084 8900</a></p>
+            <p><a href="mailto:contacto@yuan247.com">contacto@yuan247.com</a></p>
         </div>
         <div class="footer-links">
-            <a href="#" id="legalLink">Aviso Legal</a>
-            <a href="#" id="termsLink">Términos y Condiciones</a>
-            <a href="#" id="privacyLink">Política de Privacidad</a>
+            <a href="#" id="legalLink" data-key="legal_link">Aviso Legal</a>
+            <a href="#" id="termsLink" data-key="terms_link">Términos y Condiciones</a>
+            <a href="#" id="privacyLink" data-key="privacy_link">Política de Privacidad</a>
+            <select class="lang-select" id="langSelect" aria-label="Idioma / Language">
+                <option value="es">Español</option>
+                <option value="en">English</option>
+                <option value="zh">中文</option>
+            </select>
         </div>
     </div>
-    <div class="footer-copyright">
-        © 2026 Guanqian 24/7 - Todos los derechos reservados
-    </div>
+    <div class="footer-copyright" data-key="footer_copy">© 2026 Guanqian 24/7 - Todos los derechos reservados</div>
 </div>
 
-<div id="cookieBanner" class="cookie-policy-banner hidden"><span data-key="cookie_text">Utilizamos cookies para mejorar tu experiencia.</span><button id="acceptCookiesBtn" class="cookie-btn">Aceptar</button></div>
+<div id="cookieBanner" class="cookie-policy-banner hidden">
+    <span data-key="cookie_text">Utilizamos cookies para mejorar tu experiencia.</span>
+    <button id="acceptCookiesBtn" class="cookie-btn" data-key="cookie_accept">Aceptar</button>
+</div>
 
 <!-- VISTA DE PRODUCTO COMPLETO -->
-<div id="productDetailView" class="product-detail-view">
+<div id="productDetailView" class="product-detail-view" role="dialog" aria-modal="true">
     <div class="detail-container">
-        <button class="back-arrow" id="closeDetailBtn">← Volver al catálogo</button>
+        <button class="back-arrow" id="closeDetailBtn" data-key="back_btn">← Volver al catálogo</button>
         <div class="detail-grid">
             <div class="detail-gallery">
                 <div class="main-media" id="detailMainMedia"></div>
@@ -725,195 +782,440 @@
                 <h2 id="detailName"></h2>
                 <div class="detail-price" id="detailPrice"></div>
                 <div class="detail-description" id="detailDescription"></div>
-                <button class="buy-btn-detailed" id="detailBuyBtn">Comprar ahora</button>
+                <button class="buy-btn-detailed" id="detailBuyBtn" data-key="buy_btn">Comprar ahora</button>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    // IDIOMAS - Sin emojis
-    const translations = { 
-        es: { nav_home: "Inicio", nav_catalog: "Catálogo", nav_reviews: "Reseñas", brands_title: "Marcas con las que trabajamos", fast_shipping: "Envíos rápidos", fast_desc: "10 a 12 días · Seguimiento real", secure_shipping: "Envíos seguros", secure_desc: "Embalaje reforzado + seguro", safe_payment: "Pago seguro", payment_desc: "PayPal / Transferencia bancaria", catalog_title: "Catálogo", reviews_title: "Reseñas", cookie_text: "Utilizamos cookies para mejorar tu experiencia.", cookie_accept: "Aceptar", empty_msg: "No hay productos disponibles.", filter_title: "Filtrar por marca" }, 
-        en: { nav_home: "Home", nav_catalog: "Catalog", nav_reviews: "Reviews", brands_title: "Brands we work with", fast_shipping: "Express Shipping", fast_desc: "10–12 days · Live tracking", secure_shipping: "Secure Shipping", secure_desc: "Reinforced packaging + insurance", safe_payment: "Secure Payment", payment_desc: "PayPal / Bank transfer", catalog_title: "Catalog", reviews_title: "Reviews", cookie_text: "We use cookies to improve your experience.", cookie_accept: "Accept", empty_msg: "No products available.", filter_title: "Filter by brand" }, 
-        zh: { nav_home: "首页", nav_catalog: "产品目录", nav_reviews: "评价", brands_title: "合作品牌", fast_shipping: "快速物流", fast_desc: "10-12天 · 全程追踪", secure_shipping: "安全运输", secure_desc: "加固包装 + 运输保险", safe_payment: "安全支付", payment_desc: "PayPal / 银行转账", catalog_title: "产品目录", reviews_title: "客户评价", cookie_text: "我们使用Cookie改善体验。", cookie_accept: "同意", empty_msg: "暂无产品", filter_title: "按品牌筛选" } 
+    /* ========== IDIOMAS ========== */
+    const translations = {
+        es: {
+            nav_home: "Inicio", nav_catalog: "Catálogo", nav_reviews: "Reseñas",
+            brands_title: "Marcas con las que trabajamos",
+            fast_shipping: "Envíos rápidos", fast_desc: "10 a 12 días · Seguimiento real",
+            secure_shipping: "Envíos seguros", secure_desc: "Embalaje reforzado + seguro",
+            safe_payment: "Pago seguro", payment_desc: "PayPal / Transferencia bancaria",
+            catalog_title: "Catálogo", reviews_title: "Reseñas",
+            cookie_text: "Utilizamos cookies para mejorar tu experiencia.", cookie_accept: "Aceptar",
+            empty_msg: "No hay productos disponibles.", filter_title: "Filtrar por marca",
+            all_brands: "Todas las marcas", shipping_word: "envío",
+            back_btn: "← Volver al catálogo", buy_btn: "Comprar ahora",
+            default_desc: "Producto de alta calidad. Diseño exclusivo y materiales premium.",
+            buy_alert: "Proceso de compra próximamente. Gracias por su interés.",
+            legal_link: "Aviso Legal", terms_link: "Términos y Condiciones", privacy_link: "Política de Privacidad",
+            legal_text: "Aviso Legal: Guanqian 24/7 es una plataforma de catálogo ficticio. Todos estos productos no existen. Esta página es simplemente para ver productos y tener referencia. No se puede comprar ningún producto.",
+            terms_text: "Términos y Condiciones: Guanqian 24/7 es una tienda ficticia.",
+            privacy_text: "Política de Privacidad: Tus datos están protegidos. No compartimos información con terceros sin consentimiento.",
+            footer_copy: "© 2026 Guanqian 24/7 - Todos los derechos reservados"
+        },
+        en: {
+            nav_home: "Home", nav_catalog: "Catalog", nav_reviews: "Reviews",
+            brands_title: "Brands we work with",
+            fast_shipping: "Express Shipping", fast_desc: "10–12 days · Live tracking",
+            secure_shipping: "Secure Shipping", secure_desc: "Reinforced packaging + insurance",
+            safe_payment: "Secure Payment", payment_desc: "PayPal / Bank transfer",
+            catalog_title: "Catalog", reviews_title: "Reviews",
+            cookie_text: "We use cookies to improve your experience.", cookie_accept: "Accept",
+            empty_msg: "No products available.", filter_title: "Filter by brand",
+            all_brands: "All brands", shipping_word: "shipping",
+            back_btn: "← Back to catalog", buy_btn: "Buy now",
+            default_desc: "High-quality product. Exclusive design and premium materials.",
+            buy_alert: "Checkout coming soon. Thank you for your interest.",
+            legal_link: "Legal Notice", terms_link: "Terms & Conditions", privacy_link: "Privacy Policy",
+            legal_text: "Legal Notice: Guanqian 24/7 is a fictional catalog platform. None of these products exist. This page is only for browsing products and reference. No product can be purchased.",
+            terms_text: "Terms & Conditions: Guanqian 24/7 is a fictional store.",
+            privacy_text: "Privacy Policy: Your data is protected. We do not share information with third parties without consent.",
+            footer_copy: "© 2026 Guanqian 24/7 - All rights reserved"
+        },
+        zh: {
+            nav_home: "首页", nav_catalog: "产品目录", nav_reviews: "评价",
+            brands_title: "合作品牌",
+            fast_shipping: "快速物流", fast_desc: "10-12天 · 全程追踪",
+            secure_shipping: "安全运输", secure_desc: "加固包装 + 运输保险",
+            safe_payment: "安全支付", payment_desc: "PayPal / 银行转账",
+            catalog_title: "产品目录", reviews_title: "客户评价",
+            cookie_text: "我们使用Cookie改善体验。", cookie_accept: "同意",
+            empty_msg: "暂无产品", filter_title: "按品牌筛选",
+            all_brands: "全部品牌", shipping_word: "运费",
+            back_btn: "← 返回目录", buy_btn: "立即购买",
+            default_desc: "高品质产品，独家设计，优质材料。",
+            buy_alert: "购买功能即将上线，感谢您的关注。",
+            legal_link: "法律声明", terms_link: "条款与条件", privacy_link: "隐私政策",
+            legal_text: "法律声明：Guanqian 24/7 是一个虚构的产品目录平台。这些产品均不存在。本页面仅供浏览和参考，无法购买任何产品。",
+            terms_text: "条款与条件：Guanqian 24/7 是一家虚构的商店。",
+            privacy_text: "隐私政策：您的数据受到保护。未经同意，我们不会与第三方共享信息。",
+            footer_copy: "© 2026 Guanqian 24/7 - 版权所有"
+        }
     };
     let currentLang = 'es';
-    function setLanguage(lang) { if(!translations[lang]) lang='es'; currentLang=lang; document.querySelectorAll('[data-key]').forEach(el=>{ const key=el.getAttribute('data-key'); if(translations[lang][key]) el.innerText=translations[lang][key]; }); }
-    function getBrowserLang(){ const navLang=navigator.language; if(navLang.startsWith('es')) return 'es'; if(navLang.startsWith('zh')) return 'zh'; return 'en'; }
-    function initLanguage(){ let cookieLang=null; const match=document.cookie.match(/(^| )yuan_lang=([^;]+)/); if(match) cookieLang=match[2]; if(cookieLang&&translations[cookieLang]) setLanguage(cookieLang); else{ const browserLang=getBrowserLang(); setLanguage(browserLang); document.cookie=`yuan_lang=${browserLang}; path=/; max-age=31536000`; } }
-    function showCookieBanner(){ const banner=document.getElementById('cookieBanner'); const hasCookie=document.cookie.includes('yuan_lang_consent=true'); if(!hasCookie) banner.classList.remove('hidden'); else banner.classList.add('hidden'); }
-    document.getElementById('acceptCookiesBtn')?.addEventListener('click',()=>{ document.cookie="yuan_lang_consent=true; path=/; max-age=31536000"; document.cookie=`yuan_lang=${currentLang}; path=/; max-age=31536000`; document.getElementById('cookieBanner').classList.add('hidden'); });
-    initLanguage(); showCookieBanner();
+    const t = key => (translations[currentLang] && translations[currentLang][key]) || translations.es[key] || key;
+
+    function setLanguage(lang) {
+        if (!translations[lang]) lang = 'es';
+        currentLang = lang;
+        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang; // FIX: antes el <html> decía zh-CN siempre
+        document.querySelectorAll('[data-key]').forEach(el => {
+            const v = translations[lang][el.getAttribute('data-key')];
+            if (v) el.textContent = v;
+        });
+        const sel = document.getElementById('langSelect');
+        if (sel) sel.value = lang;
+    }
+    function getBrowserLang() {
+        const l = (navigator.language || 'es').toLowerCase();
+        if (l.startsWith('es')) return 'es';
+        if (l.startsWith('zh')) return 'zh';
+        return 'en';
+    }
+
+    /* ========== COOKIES ========== */
+    function getCookie(name) {
+        const m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+        return m ? decodeURIComponent(m[1]) : null;
+    }
+    function setCookie(name, value) {
+        document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=31536000; SameSite=Lax`;
+    }
+    const hasConsent = () => getCookie('yuan_lang_consent') === 'true';
+
+    // FIX: antes se guardaba la cookie de idioma sin haber aceptado el banner de cookies.
+    function initLanguage() {
+        const saved = hasConsent() ? getCookie('yuan_lang') : null;
+        setLanguage(saved && translations[saved] ? saved : getBrowserLang());
+    }
+    function showCookieBanner() {
+        const show = !hasConsent();
+        document.getElementById('cookieBanner').classList.toggle('hidden', !show);
+        document.body.classList.toggle('cookie-visible', show);
+    }
+    document.getElementById('acceptCookiesBtn').addEventListener('click', () => {
+        setCookie('yuan_lang_consent', 'true');
+        setCookie('yuan_lang', currentLang);
+        showCookieBanner();
+    });
+    document.getElementById('langSelect').addEventListener('change', e => {
+        setLanguage(e.target.value);
+        if (hasConsent()) setCookie('yuan_lang', currentLang);
+        renderFilterSidebar();
+        renderCatalogWithFilter();
+        if (currentDetail) openProductDetail(currentDetail); // refresca el detalle si está abierto
+    });
+
+    /* ========== UTILIDADES ========== */
+    const placeholder = (text, size = '400x400') =>
+        `https://placehold.co/${size}/2c2c3a/ffffff?text=${encodeURIComponent(text)}`;
+
+    // FIX: antes el onerror estaba incrustado en un atributo HTML con el nombre del producto,
+    // y se rompía con apóstrofes/comillas/& en el nombre. Además podía entrar en bucle infinito
+    // si el placeholder también fallaba. Ahora se crea con DOM y onerror se anula tras el primer fallo.
+    function makeImg(src, fallbackText, alt) {
+        const img = document.createElement('img');
+        img.alt = alt || '';
+        img.onerror = () => { img.onerror = null; img.src = placeholder(fallbackText); };
+        img.src = src || placeholder(fallbackText);
+        return img;
+    }
+    const isVideo = s => /\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(s || '');
+
+    /* ========== PRODUCTOS ========== */
+    // Datos de respaldo: se usan si productos.json no carga (por ejemplo al abrir el archivo con file://)
+    const FALLBACK_PRODUCTS = [
+        { brand: 'Nike Air Force One', name: 'Nike Air force One - Triple White', price: '$40', shipping: '$0', image: 'productos/imagen5.png' },
+        { brand: 'Nike Air Force One', name: 'Nike Air Force - Corde White', price: '$40', shipping: '$0', image: 'productos/imagen3.png' },
+        { brand: 'Nike Air Force One', name: 'Air Force One - Nocta', price: '$45', shipping: '$0', image: 'productos/imagen4.png' },
+        { brand: 'Nike Air Max', name: 'Nike Air Max Tn Plus', price: '$40', shipping: '$0', image: 'productos/imagen6.png' },
+        { brand: 'Jordan', name: 'Jordan 4 Retro Military Black', price: '$229', shipping: '$15' },
+        { brand: 'Ralph Lauren', name: 'Polo Bear Wool Sweater', price: '$245', shipping: '$16' },
+        { brand: 'Ralph Lauren', name: 'Ralph Lauren Oxford Shirt', price: '$139', shipping: '$11' },
+        { brand: 'Bape', name: 'BAPE STA Classic Green', price: '$329', shipping: '$18' },
+        { brand: 'Bape', name: 'BAPE Shark Full Zip Hoodie', price: '$449', shipping: '$22' }
+    ];
 
     let currentProducts = [];
-    let activeBrandFilter = "TODOS";
+    let lastSnapshot = '';
+    let activeBrandFilter = 'TODOS';
     let filterCollapsed = false;
+    let currentDetail = null;
+
+    const priceLine = p => `${p.price} + ${t('shipping_word')} ${p.shipping}`;
 
     async function fetchProducts() {
         try {
-            const res = await fetch('productos.json?t='+Date.now());
-            if(!res.ok) throw new Error();
+            const res = await fetch('productos.json?t=' + Date.now(), { cache: 'no-store' });
+            if (!res.ok) throw new Error('HTTP ' + res.status);
             const data = await res.json();
-            if(data && Array.isArray(data.products)) currentProducts = data.products;
-            else currentProducts = [];
-            renderFilterSidebar();
-            renderCatalogWithFilter();
-        } catch(e) { currentProducts = []; renderFilterSidebar(); renderCatalogWithFilter(); }
+            applyProducts(Array.isArray(data && data.products) ? data.products : []);
+        } catch (err) {
+            console.warn('No se pudo cargar productos.json:', err);
+            // FIX: antes un fallo de red vaciaba el catálogo. Ahora se conserva lo que había (o el respaldo).
+            if (!currentProducts.length) applyProducts(FALLBACK_PRODUCTS);
+        }
     }
 
-    function getUniqueBrands(){ const brands = new Set(currentProducts.map(p=>p.brand)); return Array.from(brands).sort(); }
-    
+    // FIX: solo se vuelve a pintar el catálogo si los datos cambiaron (evita parpadeo cada 60 s)
+    function applyProducts(list) {
+        const clean = list
+            .filter(p => p && p.name)
+            .map(p => ({ ...p, brand: p.brand || 'Otros', price: p.price ?? '', shipping: p.shipping ?? '' }));
+        const snap = JSON.stringify(clean);
+        if (snap === lastSnapshot) return;
+        lastSnapshot = snap;
+        currentProducts = clean;
+        renderFilterSidebar();
+        renderCatalogWithFilter();
+    }
+
+    const getUniqueBrands = () => Array.from(new Set(currentProducts.map(p => p.brand))).sort();
+
     function toggleFilter() {
         filterCollapsed = !filterCollapsed;
-        const brandsContainer = document.getElementById('filterBrandsContainer');
-        const toggleIcon = document.getElementById('toggleIcon');
-        if(filterCollapsed) {
-            brandsContainer.classList.add('collapsed');
-            toggleIcon.classList.add('collapsed');
-        } else {
-            brandsContainer.classList.remove('collapsed');
-            toggleIcon.classList.remove('collapsed');
-        }
+        document.getElementById('filterBrandsContainer').classList.toggle('collapsed', filterCollapsed);
+        document.getElementById('toggleIcon').classList.toggle('collapsed', filterCollapsed);
+        document.getElementById('filterHeader').setAttribute('aria-expanded', String(!filterCollapsed));
     }
-    
-    function renderFilterSidebar(){
-        const container = document.getElementById('filterBrandsContainer'); 
-        if(!container) return;
+
+    function renderFilterSidebar() {
+        const container = document.getElementById('filterBrandsContainer');
         const brands = getUniqueBrands();
-        container.innerHTML = `<button class="filter-brand-btn ${activeBrandFilter==='TODOS'?'active':''}" data-brand="TODOS">Todas las marcas</button>`;
-        brands.forEach(b=>{ 
-            container.innerHTML += `<button class="filter-brand-btn ${activeBrandFilter===b?'active':''}" data-brand="${b}">${b}</button>`; 
-        });
-        document.querySelectorAll('.filter-brand-btn').forEach(btn=>{ 
-            btn.addEventListener('click',()=>{ 
-                activeBrandFilter = btn.getAttribute('data-brand'); 
-                renderFilterSidebar(); 
-                renderCatalogWithFilter(); 
-            }); 
+        // Si la marca activa ya no existe (p. ej. se borró del JSON), volver a "todas"
+        if (activeBrandFilter !== 'TODOS' && !brands.includes(activeBrandFilter)) activeBrandFilter = 'TODOS';
+        container.replaceChildren();
+        const options = [['TODOS', t('all_brands')], ...brands.map(b => [b, b])];
+        options.forEach(([value, label]) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'filter-brand-btn' + (activeBrandFilter === value ? ' active' : '');
+            btn.textContent = label;
+            btn.addEventListener('click', () => {
+                activeBrandFilter = value;
+                renderFilterSidebar();
+                renderCatalogWithFilter();
+            });
+            container.appendChild(btn);
         });
     }
 
-    function renderCatalogWithFilter(){
-        const productsArea = document.getElementById('productsArea'); if(!productsArea) return;
-        let filtered = activeBrandFilter==='TODOS' ? currentProducts : currentProducts.filter(p=>p.brand===activeBrandFilter);
+    function renderCatalogWithFilter() {
+        const area = document.getElementById('productsArea');
+        const filtered = activeBrandFilter === 'TODOS'
+            ? currentProducts
+            : currentProducts.filter(p => p.brand === activeBrandFilter);
         const grouped = {};
-        filtered.forEach(p=>{ if(!grouped[p.brand]) grouped[p.brand]=[]; grouped[p.brand].push(p); });
-        if(Object.keys(grouped).length===0){ 
-            productsArea.innerHTML = `<div class="empty-catalog-message" data-key="empty_msg">No hay productos disponibles.</div>`; 
-            const emptyDiv=productsArea.querySelector('.empty-catalog-message'); 
-            if(emptyDiv&&translations[currentLang]?.empty_msg) emptyDiv.innerText=translations[currentLang].empty_msg; 
-            return; 
+        filtered.forEach(p => { (grouped[p.brand] = grouped[p.brand] || []).push(p); });
+
+        area.replaceChildren();
+        if (!Object.keys(grouped).length) {
+            const empty = document.createElement('div');
+            empty.className = 'empty-catalog-message';
+            empty.setAttribute('data-key', 'empty_msg');
+            empty.textContent = t('empty_msg');
+            area.appendChild(empty);
+            return;
         }
-        productsArea.innerHTML = '';
-        for(const [brand, items] of Object.entries(grouped)){
-            const brandDiv = document.createElement('div'); brandDiv.className='brand-category';
-            brandDiv.innerHTML = `<div class="brand-title">${brand}</div><div class="products-grid" id="grid-${brand.replace(/\s/g,'')}"></div>`;
-            productsArea.appendChild(brandDiv);
-            const grid = brandDiv.querySelector('.products-grid');
-            items.forEach(prod=>{
-                const card = document.createElement('div'); card.className='product-card';
-                card.innerHTML = `<img src="${prod.image}" onerror="this.src='https://placehold.co/400x400/2c2c3a/ffffff?text=${prod.name}'"><div class="product-name">${prod.name}</div><div class="price">${prod.price} + envío ${prod.shipping}</div>`;
-                card.addEventListener('click', ()=> openProductDetail(prod));
+
+        for (const [brand, items] of Object.entries(grouped)) {
+            const cat = document.createElement('div');
+            cat.className = 'brand-category';
+            const title = document.createElement('div');
+            title.className = 'brand-title';
+            title.textContent = brand;
+            const grid = document.createElement('div');
+            grid.className = 'products-grid';
+            cat.append(title, grid);
+            area.appendChild(cat);
+
+            items.forEach(prod => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.tabIndex = 0;
+                card.setAttribute('role', 'button');
+                const name = document.createElement('div');
+                name.className = 'product-name';
+                name.textContent = prod.name;
+                const price = document.createElement('div');
+                price.className = 'price';
+                price.textContent = priceLine(prod);
+                card.append(makeImg(prod.image, prod.name, prod.name), name, price);
+                card.addEventListener('click', () => openProductDetail(prod));
+                card.addEventListener('keydown', e => {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openProductDetail(prod); }
+                });
                 grid.appendChild(card);
             });
         }
     }
 
-    function openProductDetail(product){
+    /* ========== DETALLE DE PRODUCTO ========== */
+    function openProductDetail(product) {
+        currentDetail = product;
         const detailView = document.getElementById('productDetailView');
-        document.getElementById('detailName').innerText = product.name;
-        document.getElementById('detailPrice').innerText = `${product.price} + envío ${product.shipping}`;
-        document.getElementById('detailDescription').innerText = product.description || "Producto de alta calidad. Diseño exclusivo y materiales premium.";
-        const mediaArray = product.media || [product.image];
-        const mainContainer = document.getElementById('detailMainMedia');
-        const thumbsContainer = document.getElementById('detailThumbnails');
-        function renderMainMedia(index){
-            const item = mediaArray[index];
-            mainContainer.innerHTML = '';
-            if(item && (item.endsWith('.mp4') || item.endsWith('.webm'))){
+        document.getElementById('detailName').textContent = product.name;
+        document.getElementById('detailPrice').textContent = priceLine(product);
+        document.getElementById('detailDescription').textContent = product.description || t('default_desc');
+
+        // FIX: si "media" venía como array vacío, el detalle salía sin imagen
+        const media = (Array.isArray(product.media) && product.media.length) ? product.media : [product.image];
+        const main = document.getElementById('detailMainMedia');
+        const thumbs = document.getElementById('detailThumbnails');
+
+        function showMedia(index) {
+            const src = media[index];
+            main.replaceChildren();
+            if (isVideo(src)) {
                 const video = document.createElement('video');
-                video.src = item; video.controls = true; video.autoplay = false;
-                video.style.width='100%'; video.style.height='100%'; video.style.objectFit='contain';
-                mainContainer.appendChild(video);
+                video.src = src;
+                video.controls = true;
+                video.playsInline = true;
+                main.appendChild(video);
             } else {
-                const img = document.createElement('img');
-                img.src = item || product.image;
-                img.style.width='100%'; img.style.height='100%'; img.style.objectFit='contain';
-                mainContainer.appendChild(img);
+                main.appendChild(makeImg(src, product.name, product.name));
             }
-            document.querySelectorAll('.thumb').forEach((thumb,idx)=>{ if(idx===index) thumb.classList.add('active'); else thumb.classList.remove('active'); });
+            thumbs.querySelectorAll('.thumb').forEach((th, i) => th.classList.toggle('active', i === index));
         }
-        thumbsContainer.innerHTML = '';
-        mediaArray.forEach((src, idx)=>{
-            const thumb = document.createElement('img');
-            thumb.src = src;
-            thumb.classList.add('thumb');
-            if(idx===0) thumb.classList.add('active');
-            thumb.addEventListener('click',()=>{ renderMainMedia(idx); });
-            thumbsContainer.appendChild(thumb);
-        });
-        renderMainMedia(0);
+
+        thumbs.replaceChildren();
+        if (media.length > 1) {
+            media.forEach((src, i) => {
+                let th;
+                if (isVideo(src)) {
+                    // FIX: antes las miniaturas de vídeo eran <img src="video.mp4"> (imagen rota)
+                    th = document.createElement('video');
+                    th.src = src + '#t=0.1';
+                    th.muted = true;
+                    th.preload = 'metadata';
+                    th.playsInline = true;
+                } else {
+                    th = makeImg(src, product.name, '');
+                }
+                th.classList.add('thumb');
+                th.addEventListener('click', () => showMedia(i));
+                thumbs.appendChild(th);
+            });
+        }
+        showMedia(0);
+
         detailView.classList.add('active');
+        detailView.scrollTop = 0;
         document.body.style.overflow = 'hidden';
-        document.getElementById('detailBuyBtn').onclick = () => { alert("Proceso de compra próximamente. Gracias por su interés."); };
+        document.getElementById('detailBuyBtn').onclick = () => alert(t('buy_alert'));
     }
-    function closeDetail(){ document.getElementById('productDetailView').classList.remove('active'); document.body.style.overflow = ''; }
-    document.getElementById('closeDetailBtn')?.addEventListener('click', closeDetail);
-    document.getElementById('productDetailView')?.addEventListener('click', (e)=>{ if(e.target === document.getElementById('productDetailView')) closeDetail(); });
 
-    // Footer legal alerts
-    document.getElementById('legalLink')?.addEventListener('click', (e)=>{ e.preventDefault(); alert("Aviso Legal: Guanqian 24/7 es una plataforma de catalogo ficticio. Todos estos productos no existen. Esta pagina es siemplemente para ver productos y tener referencia. No se puede comprar ningun producto."); });
-    document.getElementById('termsLink')?.addEventListener('click', (e)=>{ e.preventDefault(); alert("Términos y Condiciones: Guanqian 24/7 es una tienda ficticia."); });
-    document.getElementById('privacyLink')?.addEventListener('click', (e)=>{ e.preventDefault(); alert("Política de Privacidad: Tus datos están protegidos. No compartimos información con terceros sin consentimiento."); });
+    function closeDetail() {
+        currentDetail = null;
+        document.getElementById('productDetailView').classList.remove('active');
+        document.getElementById('detailMainMedia').replaceChildren(); // detiene vídeos en reproducción
+        document.body.style.overflow = '';
+    }
+    document.getElementById('closeDetailBtn').addEventListener('click', closeDetail);
+    document.getElementById('productDetailView').addEventListener('click', e => {
+        if (e.target === e.currentTarget) closeDetail();
+    });
 
-    const carouselImages = ['banner/imagen.png','banner/imagen2.png','banner/imagen3.png','banner/imagen4.png'];
-    function buildCarousel(){
-        const container = document.getElementById('carouselImages'); if(!container) return;
-        container.innerHTML = '';
-        carouselImages.forEach(src=>{ const img=document.createElement('img'); img.src=src; img.onerror=()=>{img.src='https://placehold.co/1400x600/1a1a2e/ffffff?text=Guanqian+24/7';}; container.appendChild(img); });
-        let idx=0; const total=carouselImages.length;
-        function updateTransform(){ if(container) container.style.transform=`translateX(-${idx*100}%)`; }
-        setInterval(()=>{ idx=(idx+1)%total; updateTransform(); },5000);
-        window.addEventListener('resize',updateTransform); updateTransform();
+    /* ========== AVISOS LEGALES ========== */
+    [['legalLink', 'legal_text'], ['termsLink', 'terms_text'], ['privacyLink', 'privacy_text']].forEach(([id, key]) => {
+        document.getElementById(id).addEventListener('click', e => { e.preventDefault(); alert(t(key)); });
+    });
+
+    /* ========== CARRUSEL ========== */
+    const carouselImages = ['banner/imagen.png', 'banner/imagen2.png', 'banner/imagen3.png', 'banner/imagen4.png'];
+    function buildCarousel() {
+        const container = document.getElementById('carouselImages');
+        container.replaceChildren();
+        carouselImages.forEach((src, i) => {
+            const img = document.createElement('img');
+            img.alt = `Banner ${i + 1}`;
+            img.onerror = () => { img.onerror = null; img.src = placeholder('Guanqian 24/7', '1400x600'); };
+            img.src = src;
+            container.appendChild(img);
+        });
+        let idx = 0;
+        setInterval(() => {
+            if (document.hidden) return;
+            idx = (idx + 1) % carouselImages.length;
+            container.style.transform = `translateX(-${idx * 100}%)`;
+        }, 5000);
     }
-    
-    // Nuevos logos con filtro blanco
-    const brandLogos = ["miniatura/Bape.png","miniatura/RalphLauren.png","miniatura/Jordan.png","miniatura/Nike.png","miniatura/Corteiz.png","miniatura/LouisVuitton.png"];
-    function buildBrandsSlider(){
-        const track=document.getElementById('brandsTrack'); if(!track) return;
-        track.innerHTML=''; const duplicated=[...brandLogos,...brandLogos,...brandLogos];
-        duplicated.forEach(logo=>{ const img=document.createElement('img'); img.src=logo; img.style.height='64px'; img.style.objectFit='contain'; img.style.filter='brightness(0) invert(1)'; img.onerror=()=>{img.src='https://placehold.co/100x64/ffffff/ffffff?text=logo';}; track.appendChild(img); });
+
+    /* ========== MARCAS (marquee) ========== */
+    const brandLogos = ['miniatura/Bape.png', 'miniatura/RalphLauren.png', 'miniatura/Jordan.png',
+                        'miniatura/Nike.png', 'miniatura/Corteiz.png', 'miniatura/LouisVuitton.png'];
+    function buildBrandsSlider() {
+        const track = document.getElementById('brandsTrack');
+        track.replaceChildren();
+        // 3 copias: la animación CSS desplaza exactamente 1/3 y vuelve a empezar sin saltos
+        for (let copy = 0; copy < 3; copy++) {
+            brandLogos.forEach(logo => {
+                const img = document.createElement('img');
+                img.alt = logo.split('/').pop().replace('.png', '');
+                img.onerror = () => img.remove(); // si un logo no existe, se quita en vez de mostrar uno roto
+                img.src = logo;
+                track.appendChild(img);
+            });
+        }
     }
-    
+
+    /* ========== RESEÑAS ========== */
     const reviewsStatic = [
-        { author: "Carlos M.", text: "Excelente atención, envío rápido y productos de calidad." },
-        { author: "Wei Zhang", text: "购物体验非常好，物流安全，值得信赖。" },
-        { author: "James P.", text: "Top quality, fast shipping. Highly recommended." },
-        { author: "María F.", text: "Pagué por PayPal, todo perfecto. Volveré a comprar." }
+        { author: 'Carlos M.', text: 'Excelente atención, envío rápido y productos de calidad.' },
+        { author: 'Wei Zhang', text: '购物体验非常好，物流安全，值得信赖。' },
+        { author: 'James P.', text: 'Top quality, fast shipping. Highly recommended.' },
+        { author: 'María F.', text: 'Pagué por PayPal, todo perfecto. Volveré a comprar.' }
     ];
-    function renderReviews(){
-        const cont=document.getElementById('reviewsContainer'); if(!cont) return;
-        cont.innerHTML='';
-        reviewsStatic.forEach(rev=>{ const div=document.createElement('div'); div.className='review-item'; div.innerHTML=`<div style="font-weight:500;">${rev.author}</div><div class="review-text">${rev.text}</div>`; cont.appendChild(div); });
+    function renderReviews() {
+        const cont = document.getElementById('reviewsContainer');
+        cont.replaceChildren();
+        reviewsStatic.forEach(rev => {
+            const item = document.createElement('div');
+            item.className = 'review-item';
+            const author = document.createElement('div');
+            author.className = 'review-author';
+            author.textContent = rev.author;
+            const text = document.createElement('div');
+            text.className = 'review-text';
+            text.textContent = rev.text;
+            item.append(author, text);
+            cont.appendChild(item);
+        });
     }
-    
-    let pollInterval;
-    function startPolling(){ if(pollInterval) clearInterval(pollInterval); fetchProducts(); pollInterval = setInterval(()=>{ fetchProducts(); }, 60000); }
-    
+
+    /* ========== NAV, MENÚ MÓVIL Y DEMÁS ========== */
     const nav = document.getElementById('dynamicNav');
-    window.addEventListener('scroll',()=>{ if(window.scrollY>60) nav.classList.add('compact'); else nav.classList.remove('compact'); });
-    const menuBtn=document.getElementById('menuToggleBtn'), drawer=document.getElementById('mobileDrawer'), overlayDiv=document.getElementById('drawerOverlay'), closeDrawerBtn=document.getElementById('closeDrawerBtn');
-    function openDrawer(){ drawer.classList.add('active'); overlayDiv.style.display='block'; }
-    function closeDrawerFunc(){ drawer.classList.remove('active'); overlayDiv.style.display='none'; }
-    menuBtn?.addEventListener('click',openDrawer); closeDrawerBtn?.addEventListener('click',closeDrawerFunc); overlayDiv?.addEventListener('click',closeDrawerFunc);
-    document.querySelectorAll('.mobile-drawer a').forEach(link=>link.addEventListener('click',closeDrawerFunc));
-    document.getElementById('whatsappBtn')?.addEventListener('click',()=>window.open('https://wa.me/8613076441847','_blank'));
-    
-    // Inicializar filtro colapsable
-    document.getElementById('filterHeader')?.addEventListener('click', toggleFilter);
-    
-    buildCarousel(); buildBrandsSlider(); renderReviews(); startPolling();
+    window.addEventListener('scroll', () => nav.classList.toggle('compact', window.scrollY > 60), { passive: true });
+
+    const drawer = document.getElementById('mobileDrawer');
+    const overlayDiv = document.getElementById('drawerOverlay');
+    function openDrawer() { drawer.classList.add('active'); overlayDiv.style.display = 'block'; }
+    function closeDrawer() { drawer.classList.remove('active'); overlayDiv.style.display = 'none'; }
+    document.getElementById('menuToggleBtn').addEventListener('click', openDrawer);
+    document.getElementById('closeDrawerBtn').addEventListener('click', closeDrawer);
+    overlayDiv.addEventListener('click', closeDrawer);
+    document.querySelectorAll('.mobile-drawer a').forEach(l => l.addEventListener('click', closeDrawer));
+
+    // Filtro colapsable (accesible con teclado)
+    const filterHeader = document.getElementById('filterHeader');
+    filterHeader.addEventListener('click', toggleFilter);
+    filterHeader.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleFilter(); }
+    });
+
+    // Escape cierra el detalle y el menú móvil
+    document.addEventListener('keydown', e => {
+        if (e.key !== 'Escape') return;
+        if (currentDetail) closeDetail();
+        closeDrawer();
+    });
+
+    /* ========== INICIO ========== */
+    initLanguage();
+    showCookieBanner();
+    buildCarousel();
+    buildBrandsSlider();
+    renderReviews();
+    fetchProducts();
+    setInterval(() => { if (!document.hidden) fetchProducts(); }, 60000);
 </script>
 
-</body></html>
+</body>
+</html>
