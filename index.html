@@ -1,7 +1,7 @@
 <html lang="zh-CN"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Yuan 24/7 | 极致简约 · 动态同步</title>
+    <title>Guanqian 24/7 | 观前 </title>
     <style>
         * {
             margin: 0;
@@ -638,7 +638,7 @@
 <body>
 
 <div class="nav-dynamic" id="dynamicNav">
-    <div class="brand">Yuan 24/7</div>
+    <div class="brand">Guanqian 24/7</div>
     <div class="nav-links">
         <a href="#inicio" data-key="nav_home">Inicio</a>
         <a href="#catalogo" data-key="nav_catalog">Catálogo</a>
@@ -656,7 +656,7 @@
 <div class="overlay" id="drawerOverlay"></div>
 
 <div class="whatsapp-float" id="whatsappBtn">
-    <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm.02 15.23c-1.46 0-2.88-.39-4.11-1.12l-.3-.18-3.12.82.84-3.04-.2-.31a7.37 7.37 0 0 1-1.22-4.08c0-4.06 3.3-7.36 7.36-7.36 4.06 0 7.36 3.3 7.36 7.36s-3.3 7.37-7.36 7.37zm4.02-5.52c-.22-.11-1.3-.64-1.5-.71-.2-.07-.35-.11-.5.11-.15.22-.57.71-.7.87-.13.15-.26.16-.48.05-.22-.11-.93-.34-1.77-1.09-.66-.59-1.1-1.32-1.23-1.54-.13-.22-.01-.34.1-.45.09-.09.21-.23.31-.35.1-.12.13-.2.2-.33.07-.13.03-.25-.02-.35-.05-.1-.5-1.2-.68-1.64-.18-.43-.36-.36-.5-.37h-.43c-.15 0-.39.06-.6.29-.21.23-.79.77-.79 1.88s.81 2.18.92 2.33c.11.15 1.59 2.43 3.85 3.41.54.23.96.37 1.29.47.54.17 1.03.14 1.42.09.43-.06 1.3-.53 1.48-1.04.18-.51.18-.95.13-1.04-.05-.09-.18-.15-.4-.26z"></path></svg>
+    <svg viewBox="0 0 24 24"><path d="ath></svg>
 </div>
 
 <div class="container">
@@ -695,8 +695,8 @@
 <div class="footer-glass">
     <div class="footer-content">
         <div class="footer-info">
-            <p><strong>Yuan 24/7</strong></p>
-            <p>+86 130 7644 1847</p>
+            <p><strong>Guanqian 24/7</strong></p>
+            <p>+86 152 8084 8900</p>
             <p>contacto@yuan247.com</p>
         </div>
         <div class="footer-links">
@@ -706,7 +706,7 @@
         </div>
     </div>
     <div class="footer-copyright">
-        © 2026 Yuan 24/7 - Todos los derechos reservados
+        © 2026 Guanqian 24/7 - Todos los derechos reservados
     </div>
 </div>
 
@@ -863,15 +863,15 @@
     document.getElementById('productDetailView')?.addEventListener('click', (e)=>{ if(e.target === document.getElementById('productDetailView')) closeDetail(); });
 
     // Footer legal alerts
-    document.getElementById('legalLink')?.addEventListener('click', (e)=>{ e.preventDefault(); alert("Aviso Legal: Yuan 24/7 es una plataforma de catalogo ficticio. Todos estos productos no existen. Esta pagina es siemplemente para ver productos y tener referencia. No se puede comprar ningun producto."); });
-    document.getElementById('termsLink')?.addEventListener('click', (e)=>{ e.preventDefault(); alert("Términos y Condiciones: Yuan 24/7 es una tienda ficticia."); });
+    document.getElementById('legalLink')?.addEventListener('click', (e)=>{ e.preventDefault(); alert("Aviso Legal: Guanqian 24/7 es una plataforma de catalogo ficticio. Todos estos productos no existen. Esta pagina es siemplemente para ver productos y tener referencia. No se puede comprar ningun producto."); });
+    document.getElementById('termsLink')?.addEventListener('click', (e)=>{ e.preventDefault(); alert("Términos y Condiciones: Guanqian 24/7 es una tienda ficticia."); });
     document.getElementById('privacyLink')?.addEventListener('click', (e)=>{ e.preventDefault(); alert("Política de Privacidad: Tus datos están protegidos. No compartimos información con terceros sin consentimiento."); });
 
     const carouselImages = ['banner/imagen.png','banner/imagen2.png','banner/imagen3.png','banner/imagen4.png'];
     function buildCarousel(){
         const container = document.getElementById('carouselImages'); if(!container) return;
         container.innerHTML = '';
-        carouselImages.forEach(src=>{ const img=document.createElement('img'); img.src=src; img.onerror=()=>{img.src='https://placehold.co/1400x600/1a1a2e/ffffff?text=Yuan+24/7';}; container.appendChild(img); });
+        carouselImages.forEach(src=>{ const img=document.createElement('img'); img.src=src; img.onerror=()=>{img.src='https://placehold.co/1400x600/1a1a2e/ffffff?text=Guanqian+24/7';}; container.appendChild(img); });
         let idx=0; const total=carouselImages.length;
         function updateTransform(){ if(container) container.style.transform=`translateX(-${idx*100}%)`; }
         setInterval(()=>{ idx=(idx+1)%total; updateTransform(); },5000);
